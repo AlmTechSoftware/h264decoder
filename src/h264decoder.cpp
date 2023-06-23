@@ -31,10 +31,11 @@ H264Decoder::H264Decoder() : pkt_{std::make_unique<AVPacket>()} {
   if (!context)
     throw H264InitFailure("cannot allocate context");
 
+  // FIXME:
   // Note: CODEC_CAP_TRUNCATED was prefixed with AV_...
-  if (codec->capabilities & AV_CODEC_CAP_TRUNCATED) {
-    context->flags |= AV_CODEC_FLAG_TRUNCATED;
-  }
+  // if (codec->capabilities & AV_CODEC_CAP_TRUNCATED) {
+  //   context->flags |= AV_CODEC_FLAG_TRUNCATED;
+  // }
 
   int err = avcodec_open2(context, codec, nullptr);
   if (err < 0)
